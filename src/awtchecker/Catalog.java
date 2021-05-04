@@ -17,11 +17,13 @@ public class Catalog extends javax.swing.JFrame {
     /**
      * Creates new form Catalog
      */
+    String role;
     String currUser;
     String selectedCourseID = null;
-    public Catalog(String user) {
+    public Catalog(String user,String role) {
         initComponents();
         this.currUser = user;
+        this.role = role;
         
        
         
@@ -145,9 +147,19 @@ public class Catalog extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+        if(this.role.equals("Student")){
         new Student(currUser).setVisible(true);
         this.dispose();
+        }
+        else if(this.role.equals("Instructor")){
+        new Instructor(currUser).setVisible(true);
+        this.dispose();
+        } 
+        else{
+        new Admin(currUser).setVisible(true);
+        this.dispose();
+        }     
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -163,7 +175,7 @@ public class Catalog extends javax.swing.JFrame {
         System.out.println(courseout.courseID);
         
         if(courseout != null){
-            new SingleCourse(courseout,currUser).setVisible(true);
+            new SingleCourse(courseout,this.currUser,this.role).setVisible(true);
             this.dispose();
         }
         else{
@@ -191,7 +203,7 @@ public class Catalog extends javax.swing.JFrame {
         System.out.println(courseout.courseID);
         
         if(courseout != null){
-            new SingleCourse(courseout,currUser).setVisible(true);
+            new SingleCourse(courseout,currUser,this.role).setVisible(true);
             this.dispose();
         }
         else{

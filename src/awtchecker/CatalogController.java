@@ -31,7 +31,7 @@ class Course{
     this.startDate= startDate;
     this.endDate = endDate;  
     }
-    
+  
     public static boolean createCourse(String courseID,String instructorID,String name,String aboutCourse,String startDate,String endDate){
         try{
             
@@ -59,13 +59,14 @@ class Course{
             
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             Connection con=(Connection) DriverManager.getConnection("jdbc:derby://localhost:1527/OOAD", "anton", "password");
-            PreparedStatement ps=(PreparedStatement) con.prepareCall(" UPDATE courses SET courseID = ?, instructorID = ?, name=?,aboutCourse=?,startDate=?,endDate=?");
+            PreparedStatement ps=(PreparedStatement) con.prepareCall(" UPDATE courses SET courseID = ?, instructorID = ?, name=?,aboutCourse=?,startDate=?,endDate=? where courseID=?");
             ps.setString(1, courseID);
             ps.setString(2, instructorID);
             ps.setString(3, name);
             ps.setString(4, aboutCourse);
             ps.setString(5, startDate);
             ps.setString(6, endDate);
+            ps.setString(7, courseID);
             ps.executeUpdate();
             ps.close();
             return true;

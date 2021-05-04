@@ -51,26 +51,22 @@ import java.util.ArrayList;
         
     }
     
-    public static boolean DeleteReserve(String courseID,String instructorID,String name,String aboutCourse,String startDate,String endDate){
+    public static boolean DeleteReserve(String reservationID){
         
-//        try{
-//            
-//            Class.forName("org.apache.derby.jdbc.ClientDriver");
-//            Connection con=(Connection) DriverManager.getConnection("jdbc:derby://localhost:1527/OOAD", "anton", "password");
-//            PreparedStatement ps=(PreparedStatement) con.prepareCall(" UPDATE courses SET courseID = ?, instructorID = ?, name=?,aboutCourse=?,startDate=?,endDate=?");
-//            ps.setString(1, courseID);
-//            ps.setString(2, instructorID);
-//            ps.setString(3, name);
-//            ps.setString(4, aboutCourse);
-//            ps.setString(5, startDate);
-//            ps.setString(6, endDate);
-//            ps.executeUpdate();
-//            ps.close();
-//            return true;
-//        }catch(Exception e){
-//         return false;   
-//        }
-        return false;
+        try{
+            
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Connection con=(Connection) DriverManager.getConnection("jdbc:derby://localhost:1527/OOAD", "anton", "password");
+            PreparedStatement ps=(PreparedStatement) con.prepareCall(" DELETE from reservation where reservationID = ?");
+            ps.setString(1, reservationID);
+            
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        }catch(Exception e){
+         return false;   
+        }
+        //return false;
     }
 }
 public class ReservationController {
@@ -81,8 +77,8 @@ public class ReservationController {
                 ResultSet rs;
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
                 Connection con = (Connection) DriverManager.getConnection("jdbc:derby://localhost:1527/OOAD", "anton", "password");
-                PreparedStatement ps = (PreparedStatement) con.prepareCall(" SELECT * FROM reservation where studentID = ?");
-                ps.setString(1, studentID);
+                PreparedStatement ps = (PreparedStatement) con.prepareCall(" SELECT * FROM reservation");
+                //ps.setString(1, studentID);
                 rs = ps.executeQuery();
                 while(rs.next()) {
                     reserves.add(new Reserve(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));

@@ -19,9 +19,10 @@ public class Reservation extends javax.swing.JFrame {
      */
     String selectedReserve;
     String currUser;
-
-    public Reservation(String user) {
+    String role;
+    public Reservation(String user,String role) {
         this.currUser = user;
+        this.role = role;
         initComponents();
         
     }
@@ -50,6 +51,11 @@ public class Reservation extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Dashboard");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("My Reservations");
 
@@ -101,10 +107,11 @@ public class Reservation extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel4)))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -155,7 +162,7 @@ public class Reservation extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+        this.selectedReserve = jComboBox1.getSelectedItem().toString();
         if(this.selectedReserve == null){
          
             JOptionPane.showMessageDialog(this , "Unable to select reservation");
@@ -168,6 +175,22 @@ public class Reservation extends javax.swing.JFrame {
         jLabel7.setText(r.reservedDate);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(this.role.equals("Student")){
+        new Student(currUser).setVisible(true);
+        this.dispose();
+        }
+        else if(this.role.equals("Instructor")){
+        new Instructor(currUser).setVisible(true);
+        this.dispose();
+        } 
+        else{
+        new Admin(currUser).setVisible(true);
+        this.dispose();
+        }    
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

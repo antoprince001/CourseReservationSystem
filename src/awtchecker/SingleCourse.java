@@ -18,9 +18,11 @@ public class SingleCourse extends javax.swing.JFrame {
     /**
      * Creates new form SingleCourse
      */
+    String role;
     String currUser;
-    public SingleCourse(Course c, String user) {
+    public SingleCourse(Course c, String user,String role) {
         initComponents();
+        this.role = role;
         jLabel7.setText(c.courseID);
         jLabel8.setText(c.instructorID);
         jLabel9.setText(c.name);
@@ -154,7 +156,11 @@ public class SingleCourse extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String resID = jLabel7.getText() + this.currUser;
-        if(Reserve.createReserve(jLabel7.getText(),resID , this.currUser, new Date().toString().substring(0, 10)) == true){
+        if(this.role.equals("Instructor") || this.role.equals("Admin")){
+           JOptionPane.showMessageDialog(this , "Only student Account can perform this operation");
+
+        }
+        else if(Reserve.createReserve(jLabel7.getText(),resID , this.currUser, new Date().toString().substring(0, 10)) == true){
              JOptionPane.showMessageDialog(this , "Reservation Created Successfully");
 
         }
@@ -166,8 +172,18 @@ public class SingleCourse extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(this.role.equals("Student")){
         new Student(currUser).setVisible(true);
         this.dispose();
+        }
+        else if(this.role.equals("Instructor")){
+        new Instructor(currUser).setVisible(true);
+        this.dispose();
+        } 
+        else{
+        new Admin(currUser).setVisible(true);
+        this.dispose();
+        } 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
