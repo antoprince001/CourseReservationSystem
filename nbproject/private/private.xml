@@ -5,11 +5,14 @@
         <group>
             <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/Admin.java</file>
             <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/Catalog.java</file>
+            <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/Register.java</file>
             <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/AddCourse.java</file>
             <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/Reservation.java</file>
             <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/Instructor.java</file>
+            <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/Login.java</file>
             <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/ReservationController.java</file>
             <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/AddReservation.java</file>
+            <file>file:/C:/Users/anton/OneDrive/Documents/NetBeansProjects/AWTChecker/src/awtchecker/DeleteReservation.java</file>
         </group>
     </open-files>
 </project-private>
